@@ -15,10 +15,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Window\Window.h">
+    <ClInclude Include="PsCommon.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PsCommon.h">
+    <ClInclude Include="Core\Window\Window.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\PsCore.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -26,7 +29,10 @@
     <ClCompile Include="Pulse.h">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Window\Window.cpp">
+    <ClCompile Include="Core\Window\Window.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\PsCore.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
