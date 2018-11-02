@@ -6,22 +6,30 @@
 
 namespace Ps {
 
-	struct WindowCreateInfo {
-		int 			width;
-		int				height;
-		std::string 	title;
-	};
+
 
 	class Window {
 
 
 	public:
+		
+		struct CreateInfo {
+			int 			width;
+			int				height;
+			std::string 	title;
+		};
+		
 		Window();
 		~Window();
-		static WindowCreateInfo		CreateInfo(const int userWidth, const int userHeight, const char* userTitle);
-		PsResult					Init(const WindowCreateInfo wInfo);
+		static CreateInfo		getCreateInfo(const int userWidth, const int userHeight, const char* userTitle);
+		PsResult					Init(const CreateInfo wInfo);
+
+
+
+
 
 	private:
+		static bool		initialized;
 		GLFWwindow*		wHandle;
 		int				wWidth;
 		int				wHeight;

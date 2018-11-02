@@ -1,8 +1,11 @@
 #include "PsCore.h"
 
-PsResult Ps::Renderer::Init()
+PULSE_CORE PsResult Ps::Core::Init(const InitInfo info)
 {
-	glfwInit();
+	window = new Ps::Window;
 
-	return PsResult();
+	Ps::Window::CreateInfo		wInfo = Ps::Window::getCreateInfo(1280, 720, "Pulse");
+	if (window->Init(wInfo) != PS_SUCCESS)
+		return PS_FAILURE;
+	return PS_SUCCESS;
 }

@@ -3,8 +3,16 @@
 
 namespace Ps {
 
+	bool		Window::initialized = 0;
+
+
 	Window::Window()
 	{
+		if (!initialized)
+		{
+			glfwInit();
+			initialized = true;
+		}
 		wHandle = nullptr;
 	}
 
@@ -14,9 +22,9 @@ namespace Ps {
 			glfwDestroyWindow(wHandle);
 	}
 
-	WindowCreateInfo Window::CreateInfo(const int userWidth, const int userHeight, const char* userTitle)
+	Window::CreateInfo	 Window::getCreateInfo(const int userWidth, const int userHeight, const char* userTitle)
 	{
-		WindowCreateInfo		wInfo = { 
+		CreateInfo		wInfo = { 
 			userWidth,
 			userHeight,
 			userTitle
@@ -24,17 +32,13 @@ namespace Ps {
 		return wInfo;
 	}
 
-	PsResult Window::Init(const WindowCreateInfo wInfo)
+	PsResult Window::Init(const CreateInfo wInfo)
 	{
-		std::cout << wInfo.title << "width=" << wInfo.width << " Height=" << wInfo.height << std::endl;
 		wWidth = wInfo.width;
 		wHeight = wInfo.height;
-		wHandle = glfwCreateWindow(wWidth, wHeight, wTitle.c_str(), glfwGetPrimaryMonitor(), nullptr);
+		wHandle = glfwCreateWindow(wWidth, wHeight, wTitle.c_str(), NULL, nullptr);
 		if (!wHandle)
-		{
-			throw std::exception("GLFW Couldn't create a window");
 			return PS_FAILURE;
-		}
 		return PS_SUCCESS;
 	}
 

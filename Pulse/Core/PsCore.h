@@ -1,23 +1,26 @@
 #pragma once
 
 #include "PsCommon.h"
+#include "Core/Window/Window.h"
+#include "Core/PsCore.h"
 
 namespace Ps {
 
-	PULSE_CORE struct RendererInitInfo {
-		
-	};
-
-	PULSE_CORE class Renderer {
-
+	class Core {
 
 	public:
-		Renderer();
-		~Renderer();
+
+		PULSE_CORE struct InitInfo {
+			bool	fullscreen;
+		};
+
+		PULSE_CORE PsResult Init(const InitInfo info);
 		
-		PsResult		Init();
 
+	
 	private:
-
+		Ps::Window	*window;
 	};
+
+
 }
