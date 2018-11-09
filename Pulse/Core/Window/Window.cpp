@@ -3,17 +3,8 @@
 
 namespace Ps {
 
-	bool		Window::initialized = 0;
-
-
 	Window::Window()
 	{
-		if (!initialized)
-		{
-			glfwInit();
-			initialized = true;
-		}
-		wHandle = nullptr;
 	}
 
 	Window::~Window()
@@ -22,7 +13,7 @@ namespace Ps {
 			glfwDestroyWindow(wHandle);
 	}
 
-	Window::CreateInfo	 Window::getCreateInfo(const int userWidth, const int userHeight, const char* userTitle)
+	Window::CreateInfo	 Window::GetCreateInfo(const int userWidth, const int userHeight, const char* userTitle)
 	{
 		CreateInfo		wInfo = { 
 			userWidth,
