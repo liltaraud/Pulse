@@ -11,12 +11,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Core\PsCore.cpp" />
     <ClCompile Include="Pulse.h" />
-    <ClCompile Include="src\Window\Window.cpp" />
+    <ClCompile Include="Core\Window\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Core\PsCore.h" />
     <ClInclude Include="PsCommon.h" />
-    <ClInclude Include="src\Window\Window.h" />
+    <ClInclude Include="Core\Window\Window.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -66,7 +68,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir)Dependencies\VulkanSDK\1.1.85.0\Include;$(SolutionDir)Dependencies\glfw-3.2.1\include;$(ProjectDir)src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir)Dependencies\VulkanSDK\1.1.85.0\Include;$(SolutionDir)Dependencies\glfw-3.2.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Lib>
@@ -85,7 +87,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir)Dependencies\VulkanSDK\1.1.85.0\Include;$(SolutionDir)Dependencies\glfw-3.2.1\include;$(ProjectDir)src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir)Dependencies\VulkanSDK\1.1.85.0\Include;$(SolutionDir)Dependencies\glfw-3.2.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>

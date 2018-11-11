@@ -1,16 +1,15 @@
 #include "Pulse.h"
 #include <iostream>
 
-
 int		main()
 {
-	glfwInit();
+	Ps::Core::InitInfo		info = Ps::Core::GetInitInfo(false, 1280, 720, "Pulse-v0.1", PS_RENDERINGMODE_DEFERRED);
+	Ps::Core		Pulse;
 
+	if (Pulse.Init(info) != PS_SUCCESS)
+		std::cout << "Couldn't Initialize Pulse Engine\n";
 
-	Ps::Window		w;
-	Ps::WindowCreateInfo		wInfo = Ps::Window::CreateInfo(1280, 720, "Pulse");
-	w.Init(wInfo);
-	std::cin.get();
-	std::cin.get();
+	for (;;);
+
 	return 0;
 }
