@@ -9,6 +9,7 @@ int		main()
 	if (Pulse.Init(info) != PS_SUCCESS)
 		std::cout << "Couldn't Initialize Pulse Engine\n";
 
-	std::cin.get();
-	return 1;
+	for (;;);
+
+	return 0;
 }

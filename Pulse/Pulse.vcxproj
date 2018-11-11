@@ -16,7 +16,6 @@
     <ClCompile Include="Core\Window\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Core\Graphics\VkTools.h" />
     <ClInclude Include="Core\PsCore.h" />
     <ClInclude Include="PsCommon.h" />
     <ClInclude Include="Core\Window\Window.h" />
