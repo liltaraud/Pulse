@@ -1,16 +1,16 @@
 #pragma once
 
 #include "PsCommon.h"
-#include "Core/Window/Window.h"
-#include "Core/PsCore.h"
+#include "Window/Window.h"
 
 namespace Ps {
 
-	class Core {
+	class PULSE_API Core
+	{
 
 	public:
 
-		PULSE_CORE struct InitInfo
+		PULSE_API struct InitInfo
 		{
 			bool			fullscreen;
 			int				windowWidth;
@@ -19,10 +19,10 @@ namespace Ps {
 			PsRenderingMode	renderingMode;
 		};
 
-		PULSE_CORE Core();
-		PULSE_CORE ~Core();
-		PULSE_CORE PsResult Init(const InitInfo info);
-		PULSE_CORE static const InitInfo GetInitInfo(const bool inputfs, const int inputWidth, const int inputHeight, const std::string inputTitle, const PsRenderingMode inputRenderMode);
+		PULSE_API Core();
+		PULSE_API ~Core();
+		PULSE_API PsResult Init(const InitInfo info);
+		PULSE_API static const InitInfo GetInitInfo(const bool inputfs, const int inputWidth, const int inputHeight, const std::string inputTitle, const PsRenderingMode inputRenderMode);
 		
 
 	

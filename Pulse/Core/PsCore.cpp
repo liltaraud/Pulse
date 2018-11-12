@@ -5,23 +5,26 @@ namespace Ps {
 	bool		Core::initialized = false;
 
 
-	Core::Core()
+	PULSE_API Core::Core()
 	{
 	}
 
-	Core::~Core()
+	PULSE_API Core::~Core()
 	{
 		TerminateLibrairies();
 	}
 
-	PULSE_CORE PsResult Ps::Core::Init(const InitInfo engineInfo)
+	PULSE_API PsResult	 Ps::Core::Init(const InitInfo engineInfo)
 	{
 		if (initialized == false)
 		{
 			if (InitLibrairies() != PS_SUCCESS)
+			{
+				PS_CORE_ERROR("Librairies init failed\n");
 				return PS_FAILURE;
+			}
 
-			std::cout << "Lib init ok\n";
+			
 
 			window = new Ps::Window;
 
@@ -31,21 +34,22 @@ namespace Ps {
 				engineInfo.windowTitle.c_str());
 
 			if (window->Init(wInfo) != PS_SUCCESS)
+			{
+				PS_CORE_ERROR("Window initialisation failed\n");
 				return PS_FAILURE;
-
-			std::cout << "Window init ok\n";
+			}
 
 			initialized = true;
 		}
 		return PS_SUCCESS;
 	}
 
-	PULSE_CORE const Core::InitInfo		Core::GetInitInfo(
-		const bool inputfs,
-		const int inputWidth,
-		const int inputHeight,
-		const std::string inputTitle,
-		const PsRenderingMode inputRenderMode)
+	PULSE_API const Core::InitInfo		Core::GetInitInfo(
+											const bool inputfs,
+											const int inputWidth,
+											const int inputHeight,
+											const std::string inputTitle,
+											const PsRenderingMode inputRenderMode)
 	{
 		const InitInfo engineInfo = {
 			inputfs,
@@ -60,12 +64,13 @@ namespace Ps {
 
 	PsResult	Ps::Core::InitLibrairies()
 	{
+		Log::Init();
 		if (glfwInit() == GLFW_FALSE)
 			return PS_FAILURE;
 		return PS_SUCCESS;
 	}
 
-	void Ps::Core::TerminateLibrairies()
+	void	Ps::Core::TerminateLibrairies()
 	{
 		glfwTerminate();
 	}

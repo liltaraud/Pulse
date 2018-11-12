@@ -24,6 +24,9 @@
     <ClInclude Include="Core\PsCore.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Core\Log\Log.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Pulse.h">

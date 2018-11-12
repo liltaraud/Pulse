@@ -1,15 +1,9 @@
 #pragma once
 
-#include <vulkan/vulkan.hpp>
-#define GLFW_INCLUDE_VULKAN
-#include <GLFW/glfw3.h>
+// SHARED CORE COMPONENTS -----------------------
+#include "Core/Log/Log.h"
 
-#include <vector>
-#include <iostream>
-#include <string>
-
-
-#define PULSE_CORE
+#define PULSE_API
 
 enum PsResult
 {
