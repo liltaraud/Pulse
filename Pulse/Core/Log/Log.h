@@ -34,11 +34,11 @@ namespace Ps {
 #define PS_CORE_INFO(...)     ::Ps::Log::GetCoreLogger()->info(__VA_ARGS__)
 #define PS_CORE_WARN(...)     ::Ps::Log::GetCoreLogger()->warn(__VA_ARGS__)
 #define PS_CORE_ERROR(...)    ::Ps::Log::GetCoreLogger()->error(__VA_ARGS__)
-#define PS_CORE_FATAL(...)    ::Ps::Log::GetCoreLogger()->fatal(__VA_ARGS__)
+#define PS_CORE_CRITICAL(...) ::Ps::Log::GetCoreLogger()->critical(__VA_ARGS__)
 
 // Client log macros
 #define PS_TRACE(...)	      ::Ps::Log::GetClientLogger()->trace(__VA_ARGS__)
 #define PS_INFO(...)	      ::Ps::Log::GetClientLogger()->info(__VA_ARGS__)
 #define PS_WARN(...)	      ::Ps::Log::GetClientLogger()->warn(__VA_ARGS__)
 #define PS_ERROR(...)	      ::Ps::Log::GetClientLogger()->error(__VA_ARGS__)
-#define PS_FATAL(...)		  ::Ps::Log::GetClientLogger()->fatal(__VA_ARGS__)
+#define PS_CRITICAL(...)	  ::Ps::Log::GetClientLogger()->critical(__VA_ARGS__)

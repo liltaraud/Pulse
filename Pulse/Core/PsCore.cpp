@@ -20,7 +20,7 @@ namespace Ps {
 		{
 			if (InitLibrairies() != PS_SUCCESS)
 			{
-				PS_CORE_ERROR("Librairies init failed\n");
+				PS_CORE_ERROR("Librairies init failed");
 				return PS_FAILURE;
 			}
 
@@ -35,7 +35,7 @@ namespace Ps {
 
 			if (window->Init(wInfo) != PS_SUCCESS)
 			{
-				PS_CORE_ERROR("Window initialisation failed\n");
+				PS_CORE_ERROR("Window initialisation failed");
 				return PS_FAILURE;
 			}
 
@@ -67,6 +67,7 @@ namespace Ps {
 		Log::Init();
 		if (glfwInit() == GLFW_FALSE)
 			return PS_FAILURE;
+		
 		return PS_SUCCESS;
 	}
 

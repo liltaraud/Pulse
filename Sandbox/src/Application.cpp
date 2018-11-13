@@ -7,7 +7,7 @@ int		main()
 	Ps::Core		Pulse;
 
 	if (Pulse.Init(info) != PS_SUCCESS)
-		PS_TRACE("Couldn't Initialize Pulse Engine\n");
+		PS_CRITICAL("Couldn't Initialize Pulse Engine");
 
 	for (;;);
 
