@@ -8,11 +8,11 @@ namespace Ps {
 
 	Window::~Window()
 	{
-		if (wHandle)
-			glfwDestroyWindow(wHandle);
+		if (m_Handle)
+			glfwDestroyWindow(m_Handle);
 	}
 
-	Window::CreateInfo	 Window::GetCreateInfo(const int userWidth, const int userHeight, const char* userTitle)
+	const Window::CreateInfo	 Window::GetCreateInfo(const int userWidth, const int userHeight, const char* userTitle)
 	{
 		CreateInfo		wInfo = { 
 			userWidth,
@@ -24,11 +24,14 @@ namespace Ps {
 
 	PsResult Window::Init(const CreateInfo wInfo)
 	{
-		wWidth = wInfo.width;
-		wHeight = wInfo.height;
-		wHandle = glfwCreateWindow(wWidth, wHeight, wTitle.c_str(), NULL, nullptr);
-		if (!wHandle)
+		m_Width = wInfo.width;
+		m_Height = wInfo.height;
+		m_Handle = glfwCreateWindow(m_Width, m_Height, m_Title.c_str(), NULL, nullptr);
+		if (!m_Handle)
+		{
+			PS_CORE_ERROR("GLFW window creation failed");
 			return PS_FAILURE;
+		}
 		return PS_SUCCESS;
 	}
 

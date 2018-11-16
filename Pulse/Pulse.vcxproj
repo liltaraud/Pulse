@@ -14,12 +14,14 @@
     <ClCompile Include="Core\PsCore.cpp" />
     <ClCompile Include="Pulse.h" />
     <ClCompile Include="Core\Window\Window.cpp" />
+    <ClCompile Include="Core\Rendering\Renderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\PsCore.h" />
     <ClInclude Include="Core\Log\Log.h" />
     <ClInclude Include="PsCommon.h" />
     <ClInclude Include="Core\Window\Window.h" />
+    <ClInclude Include="Core\Rendering\Renderer.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -69,7 +71,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\spdlog\include;$(ProjectDir);$(SolutionDir)Dependencies\VulkanSDK\1.1.85.0\Include;$(SolutionDir)Dependencies\glfw-3.2.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\spdlog\include;$(ProjectDir)Core\;$(ProjectDir);$(SolutionDir)Dependencies\VulkanSDK\1.1.85.0\Include;$(SolutionDir)Dependencies\glfw-3.2.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Lib>
@@ -88,7 +90,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\spdlog\include;$(ProjectDir);$(SolutionDir)Dependencies\VulkanSDK\1.1.85.0\Include;$(SolutionDir)Dependencies\glfw-3.2.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\spdlog\include;$(ProjectDir)Core\;$(ProjectDir);$(SolutionDir)Dependencies\VulkanSDK\1.1.85.0\Include;$(SolutionDir)Dependencies\glfw-3.2.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>

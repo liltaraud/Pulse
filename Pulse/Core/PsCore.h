@@ -2,6 +2,7 @@
 
 #include "PsCommon.h"
 #include "Window/Window.h"
+#include "Rendering/Renderer.h"
 
 namespace Ps {
 
@@ -15,7 +16,7 @@ namespace Ps {
 			bool			fullscreen;
 			int				windowWidth;
 			int				windowHeight;
-			std::string		windowTitle;
+			std::string		applicationName;
 			PsRenderingMode	renderingMode;
 		};
 
@@ -27,8 +28,10 @@ namespace Ps {
 
 	
 	private:
-		Ps::Window	*window;
-		static bool initialized;
+		static bool s_Initialized;
+		
+		Ps::Window		*m_Window;
+		Ps::Renderer	*m_Renderer;
 
 
 		PsResult	InitLibrairies();

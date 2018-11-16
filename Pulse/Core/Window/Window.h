@@ -22,15 +22,15 @@ namespace Ps {
 		
 		Window();
 		~Window();
-		static CreateInfo		GetCreateInfo(const int userWidth, const int userHeight, const char* userTitle);
+		static const CreateInfo	GetCreateInfo(const int userWidth, const int userHeight, const char* userTitle);
 		PsResult				Init(const CreateInfo wInfo);
 
 
 	private:
-		GLFWwindow*		wHandle;
-		int				wWidth;
-		int				wHeight;
-		std::string		wTitle;
+		GLFWwindow*		m_Handle;
+		int				m_Width;
+		int				m_Height;
+		std::string		m_Title;
 
 	};
 }

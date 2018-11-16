@@ -2,7 +2,7 @@
 
 namespace Ps {
 
-	bool		Core::initialized = false;
+	bool		Core::s_Initialized = false;
 
 
 	PULSE_API Core::Core()
@@ -16,30 +16,38 @@ namespace Ps {
 
 	PULSE_API PsResult	 Ps::Core::Init(const InitInfo engineInfo)
 	{
-		if (initialized == false)
+		if (s_Initialized == false)
 		{
 			if (InitLibrairies() != PS_SUCCESS)
+				return PS_FAILURE;
+
+
+			m_Window = new Ps::Window;
+			if (!m_Window)
 			{
-				PS_CORE_ERROR("Librairies init failed");
+				PS_CORE_ERROR("Window Creation failed");
 				return PS_FAILURE;
 			}
-
-			
-
-			window = new Ps::Window;
 
 			Ps::Window::CreateInfo		wInfo = Ps::Window::GetCreateInfo(
 				engineInfo.windowWidth,
 				engineInfo.windowHeight,
-				engineInfo.windowTitle.c_str());
+				engineInfo.applicationName.c_str());
 
-			if (window->Init(wInfo) != PS_SUCCESS)
+			if (m_Window->Init(wInfo) != PS_SUCCESS)
+				return PS_FAILURE;
+
+
+			m_Renderer = new Ps::Renderer;
+			if (!m_Renderer)
 			{
-				PS_CORE_ERROR("Window initialisation failed");
+				PS_CORE_ERROR("Renderer object creation failed");
 				return PS_FAILURE;
 			}
+			if (m_Renderer->Init() != PS_SUCCESS)
+				return PS_FAILURE;
 
-			initialized = true;
+			s_Initialized = true;
 		}
 		return PS_SUCCESS;
 	}
@@ -66,8 +74,10 @@ namespace Ps {
 	{
 		Log::Init();
 		if (glfwInit() == GLFW_FALSE)
+		{
+			PS_CORE_CRITICAL("GLFW failed to initialize");
 			return PS_FAILURE;
-		
+		}
 		return PS_SUCCESS;
 	}
 
