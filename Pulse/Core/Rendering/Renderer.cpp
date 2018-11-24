@@ -37,7 +37,7 @@ namespace Ps {
 		}
 		return PS_SUCCESS;
 	}
-	
+/*
 	void		VkGPU::findPhysicalDevice(VkSurfaceKHR const& surface)
 	{
 		uint32_t	deviceCount = 0;
@@ -56,7 +56,7 @@ namespace Ps {
 		if (physicalDevice == VK_NULL_HANDLE)
 			throw std::runtime_error("Failed to find a suitable GPU");
 	}
-
+*/
 
 	void Renderer::DestroyVulkanObjects()
 	{
