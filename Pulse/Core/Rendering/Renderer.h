@@ -15,7 +15,7 @@ namespace Ps {
 		const PsResult		Init();
 
 	private:
-		vk::Instance		*m_Instance;
+		vk::Instance		m_Instance;
 
 
 		const PsResult		CreateInstance();
