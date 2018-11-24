@@ -12,10 +12,11 @@ namespace Ps {
 		Renderer();
 		~Renderer();
 
-		const PsResult		Init();
+		const PsResult		Init(Ps::Window& ext_Window);
 
 	private:
 		vk::Instance		m_Instance;
+		Ps::Window			*m_TargetWindowHandle;
 
 
 		const PsResult		CreateInstance();

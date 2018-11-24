@@ -1,7 +1,7 @@
 #pragma once
 
 #include "PsCommon.h"
-#define GLFW_INCLUDE_VULKAN
+#include "vulkan/vulkan.hpp"
 #include <GLFW/glfw3.h>
 #include <string>
 
@@ -23,7 +23,10 @@ namespace Ps {
 		Window();
 		~Window();
 		static const CreateInfo	GetCreateInfo(const int userWidth, const int userHeight, const char* userTitle);
-		PsResult				Init(const CreateInfo wInfo);
+		const PsResult			Init(const CreateInfo wInfo);
+		const vk::SurfaceKHR&	GetSurface();
+		const PsResult			InitSurface(const vk::Instance& instance);
+
 
 
 	private:
@@ -31,6 +34,6 @@ namespace Ps {
 		int				m_Width;
 		int				m_Height;
 		std::string		m_Title;
-
+		vk::SurfaceKHR	m_Surface;
 	};
 }

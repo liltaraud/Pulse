@@ -44,7 +44,7 @@ namespace Ps {
 				PS_CORE_ERROR("Renderer object creation failed");
 				return PS_FAILURE;
 			}
-			if (m_Renderer->Init() != PS_SUCCESS)
+			if (m_Renderer->Init(*m_Window) != PS_SUCCESS)
 				return PS_FAILURE;
 
 			s_Initialized = true;

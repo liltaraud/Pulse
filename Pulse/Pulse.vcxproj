@@ -19,6 +19,7 @@
   <ItemGroup>
     <ClInclude Include="Core\PsCore.h" />
     <ClInclude Include="Core\Log\Log.h" />
+    <ClInclude Include="Core\VkTools\VkTools.h" />
     <ClInclude Include="PsCommon.h" />
     <ClInclude Include="Core\Window\Window.h" />
     <ClInclude Include="Core\Rendering\Renderer.h" />

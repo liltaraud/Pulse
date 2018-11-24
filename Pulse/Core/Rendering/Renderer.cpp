@@ -1,5 +1,4 @@
 #include "Renderer.h"
-#include <assert.h>
 
 namespace Ps {
 
@@ -13,13 +12,15 @@ namespace Ps {
 		DestroyVulkanObjects();
 	}
 
-	const PsResult		Renderer::Init()
+	const PsResult		Renderer::Init(Ps::Window& ext_Window)
 	{
 		if (CreateInstance() != PS_SUCCESS)
 		{
 			PS_CORE_CRITICAL("Failed to initialize renderer");
 			return PS_FAILURE;
 		}
+		m_TargetWindowHandle = &ext_Window;
+		m_TargetWindowHandle->InitSurface(m_Instance);
 		return PS_SUCCESS;
 	}
 
@@ -37,26 +38,6 @@ namespace Ps {
 		}
 		return PS_SUCCESS;
 	}
-/*
-	void		VkGPU::findPhysicalDevice(VkSurfaceKHR const& surface)
-	{
-		uint32_t	deviceCount = 0;
-
-		vkEnumeratePhysicalDevices(instance, &deviceCount, nullptr);
-		if (deviceCount == 0)
-			throw std::runtime_error("Failed to find any GPUs with Vulkan support !");
-		std::vector<VkPhysicalDevice> devices(deviceCount);
-		vkEnumeratePhysicalDevices(instance, &deviceCount, devices.data());
-		for (const auto& dev : devices) {
-			if (isSuitableDevice(dev, surface)) {
-				physicalDevice = dev;
-				break;
-			}
-		}
-		if (physicalDevice == VK_NULL_HANDLE)
-			throw std::runtime_error("Failed to find a suitable GPU");
-	}
-*/
 
 	void Renderer::DestroyVulkanObjects()
 	{
