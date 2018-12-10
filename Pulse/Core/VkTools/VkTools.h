@@ -12,12 +12,12 @@ const bool enableValidationLayers = true;
 #endif
 
 
-
+/* LAYERS 
  = {
 	"VK_LAYER_LUNARG_standard_validation",
 	"VK_LAYER_LUNARG_object_tracker"
 };
-
+*/
 const std::vector<const char *>	requiredExtensions = {
 	VK_KHR_SWAPCHAIN_EXTENSION_NAME
 };
@@ -50,7 +50,7 @@ namespace Ps {
 				PS_CORE_ERROR("Failed to find any GPUs with required functionnalities !");
 			return physicalDevice;
 		}
-
+/*
 		const bool		IsSuitableDevice(vk::PhysicalDevice device, vk::SurfaceKHR const& surface)
 		{
 			vk::PhysicalDeviceProperties		deviceProperties;
@@ -126,7 +126,7 @@ namespace Ps {
 				return false;
 			return true;
 		}
-
+*/
 		const bool		CheckExtensionSupport(vk::PhysicalDevice& device)
 		{
 			uint32_t	extensionCount;
@@ -143,7 +143,7 @@ namespace Ps {
 			}
 			return (extensionList.empty());
 		}
-
+/*
 		SwapChainSupportDetails		VkGPU::querySwapChainSupport(VkPhysicalDevice device, VkSurfaceKHR const& surface)
 		{
 			uint32_t					formatCount;
@@ -166,6 +166,6 @@ namespace Ps {
 
 			return scDetails;
 		}
-
+*/
 	}
 }
