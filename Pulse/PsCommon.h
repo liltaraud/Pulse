@@ -5,15 +5,16 @@
 
 #define PULSE_API
 
-enum PsResult
-{
-	PS_SUCCESS = 1,
-	PS_FAILURE = 0
-};
+#ifdef PS_DEBUG
+	#define PS_ASSERT(x, ...) { if(!(x)) { PS_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
+	#define PS_CORE_ASSERT(x, ...) { if(!(x)) { PS_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
+#else
+	#define PS_ASSERT(x, ...)
+	#define PS_CORE_ASSERT(x, ...)
+#endif
 
-enum PsRenderingMode
+enum class PsResult
 {
-	PS_RENDERINGMODE_FORWARD,
-	PS_RENDERINGMODE_DEFERRED,
-	PS_RENDERINGMODE_VR
+	PS_SUCCESS,
+	PS_FAILURE
 };

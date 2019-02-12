@@ -3,7 +3,7 @@
 
 int		main()
 {
-	Ps::Core::InitInfo		info = Ps::Core::GetInitInfo(false, 1280, 720, "Pulse", PS_RENDERINGMODE_DEFERRED);
+	Ps::Core::InitInfo		info = Ps::Core::GetInitInfo(false, 1280, 720, "Pulse");
 	Ps::Core		Pulse;
 
 	if (Pulse.Init(info) != PS_SUCCESS)

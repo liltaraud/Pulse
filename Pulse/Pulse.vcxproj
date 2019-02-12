@@ -19,7 +19,7 @@
   <ItemGroup>
     <ClInclude Include="Core\PsCore.h" />
     <ClInclude Include="Core\Log\Log.h" />
-    <ClInclude Include="Core\VkTools\VkTools.h" />
+    <ClInclude Include="Core\Rendering\API\VkTools.h" />
     <ClInclude Include="PsCommon.h" />
     <ClInclude Include="Core\Window\Window.h" />
     <ClInclude Include="Core\Rendering\Renderer.h" />
@@ -74,6 +74,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\spdlog\include;$(ProjectDir)Core\;$(ProjectDir);$(SolutionDir)Dependencies\VulkanSDK\1.1.85.0\Include;$(SolutionDir)Dependencies\glfw-3.2.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <PreprocessorDefinitions>PS_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Lib>
       <AdditionalDependencies>glfw3.lib;vulkan-1.lib;%(AdditionalDependencies)</AdditionalDependencies>

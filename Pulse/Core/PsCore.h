@@ -17,13 +17,12 @@ namespace Ps {
 			int				windowWidth;
 			int				windowHeight;
 			std::string		applicationName;
-			PsRenderingMode	renderingMode;
 		};
 
 		PULSE_API Core();
 		PULSE_API ~Core();
 		PULSE_API PsResult Init(const InitInfo info);
-		PULSE_API static const InitInfo GetInitInfo(const bool inputfs, const int inputWidth, const int inputHeight, const std::string inputTitle, const PsRenderingMode inputRenderMode);
+		PULSE_API static const InitInfo GetInitInfo(const bool inputfs, const int inputWidth, const int inputHeight, const std::string inputTitle);
 		
 
 	

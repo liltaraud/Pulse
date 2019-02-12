@@ -56,15 +56,13 @@ namespace Ps {
 											const bool inputfs,
 											const int inputWidth,
 											const int inputHeight,
-											const std::string inputTitle,
-											const PsRenderingMode inputRenderMode)
+											const std::string inputTitle)
 	{
 		const InitInfo engineInfo = {
 			inputfs,
 			inputWidth,
 			inputHeight,
 			inputTitle,
-			inputRenderMode
 		};
 
 		return  engineInfo;

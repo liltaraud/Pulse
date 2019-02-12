@@ -9,16 +9,11 @@ namespace Ps {
 	
 	Renderer::~Renderer()
 	{
-		DestroyVulkanObjects();
 	}
 
 	const PsResult		Renderer::Init(Ps::Window& ext_Window)
 	{
-		if (CreateInstance() != PS_SUCCESS)
-		{
-			PS_CORE_CRITICAL("Failed to initialize renderer");
-			return PS_FAILURE;
-		}
+		PS_CORE_ASSERT(CreateInstance() != PS_SUCCESS, "Failed to initialize renderer");
 		m_TargetWindowHandle = &ext_Window;
 		m_TargetWindowHandle->InitSurface(m_Instance);
 		return PS_SUCCESS;
@@ -31,11 +26,7 @@ namespace Ps {
 
 		vk::InstanceCreateInfo	instanceInfo({}, &appInfo, 0, nullptr, 0, nullptr);
 
-		if (vk::createInstance(&instanceInfo, nullptr, &m_Instance) != vk::Result::eSuccess)
-		{
-			PS_CORE_CRITICAL("Failed create a Vulkan instance");
-			return PS_FAILURE;
-		}
+		PS_ASSERT(vk::createInstance(&instanceInfo, nullptr, &m_Instance) == vk::Result::eSuccess, "Vk instance creation failed");
 		return PS_SUCCESS;
 	}
 
