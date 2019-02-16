@@ -29,8 +29,8 @@ namespace Ps {
 	private:
 		static bool s_Initialized;
 		
-		Ps::Window		*m_Window;
-		Ps::Renderer	*m_Renderer;
+		Ps::Window		m_Window;
+		Ps::Renderer	m_Renderer;
 
 
 		PsResult	InitLibrairies();

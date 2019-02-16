@@ -2,7 +2,7 @@
 
 #include "PsCommon.h"
 #include "Window/Window.h"
-#include <vulkan/vulkan.hpp>
+#include "API/VkAPI.h"
 
 namespace Ps {
 
@@ -12,15 +12,12 @@ namespace Ps {
 		Renderer();
 		~Renderer();
 
-		const PsResult		Init(Ps::Window& ext_Window);
+		PsResult		Init(Ps::Window& ext_Window);
 
 	private:
-		vk::Instance		m_Instance;
+		Ps::VkAPI			graphicsAPI;
 		Ps::Window			*m_TargetWindowHandle;
 
-
-		const PsResult		CreateInstance();
-		void				DestroyVulkanObjects();
 	};
 
 }

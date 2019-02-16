@@ -14,41 +14,26 @@ namespace Ps {
 		TerminateLibrairies();
 	}
 
-	PULSE_API PsResult	 Ps::Core::Init(const InitInfo engineInfo)
+	PULSE_API PsResult	 Core::Init(const InitInfo engineInfo)
 	{
-		if (s_Initialized == false)
-		{
-			if (InitLibrairies() != PS_SUCCESS)
-				return PS_FAILURE;
+		PS_CORE_ASSERT(s_Initialized == false, "Core has already been initalized");
+		
+		PsResult	libErr = InitLibrairies();
+		PS_CORE_ASSERT(libErr == PS_SUCCESS, "Librairies initialization failed");
 
+		Window::CreateInfo		wInfo = Window::GetCreateInfo(
+			engineInfo.windowWidth,
+			engineInfo.windowHeight,
+			engineInfo.applicationName.c_str());
 
-			m_Window = new Ps::Window;
-			if (!m_Window)
-			{
-				PS_CORE_ERROR("Window Creation failed");
-				return PS_FAILURE;
-			}
+		PsResult winErr = m_Window.Init(wInfo);
+		PS_CORE_ASSERT(winErr == PS_SUCCESS, "Window initialization failed");
 
-			Ps::Window::CreateInfo		wInfo = Ps::Window::GetCreateInfo(
-				engineInfo.windowWidth,
-				engineInfo.windowHeight,
-				engineInfo.applicationName.c_str());
+		PsResult rendererErr = m_Renderer.Init(m_Window);
+		PS_CORE_ASSERT(rendererErr == PS_SUCCESS, "Renderer initialization failed");
 
-			if (m_Window->Init(wInfo) != PS_SUCCESS)
-				return PS_FAILURE;
+		s_Initialized = true;
 
-
-			m_Renderer = new Ps::Renderer;
-			if (!m_Renderer)
-			{
-				PS_CORE_ERROR("Renderer object creation failed");
-				return PS_FAILURE;
-			}
-			if (m_Renderer->Init(*m_Window) != PS_SUCCESS)
-				return PS_FAILURE;
-
-			s_Initialized = true;
-		}
 		return PS_SUCCESS;
 	}
 
@@ -68,18 +53,17 @@ namespace Ps {
 		return  engineInfo;
 	}
 
-	PsResult	Ps::Core::InitLibrairies()
+	PsResult	Core::InitLibrairies()
 	{
+		int err = glfwInit();
+		PS_CORE_ASSERT(err == GLFW_TRUE, "Failed to initalize GLFW");
+		
 		Log::Init();
-		if (glfwInit() == GLFW_FALSE)
-		{
-			PS_CORE_CRITICAL("GLFW failed to initialize");
-			return PS_FAILURE;
-		}
+	
 		return PS_SUCCESS;
 	}
 
-	void	Ps::Core::TerminateLibrairies()
+	void	Core::TerminateLibrairies()
 	{
 		glfwTerminate();
 	}

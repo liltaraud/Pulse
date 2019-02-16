@@ -6,10 +6,12 @@ int		main()
 	Ps::Core::InitInfo		info = Ps::Core::GetInitInfo(false, 1280, 720, "Pulse");
 	Ps::Core		Pulse;
 
-	if (Pulse.Init(info) != PS_SUCCESS)
-		PS_CRITICAL("Couldn't Initialize Pulse Engine");
+	PsResult psErr = Pulse.Init(info);
+	PS_ASSERT(psErr == PS_SUCCESS, "Pulse Initalization failed");
 
-	for (;;);
-
+	while (!glfwWindowShouldClose(Ps::Window::GetWindowHandle()))
+	{
+		glfwPollEvents();
+	}
 	return 0;
 }

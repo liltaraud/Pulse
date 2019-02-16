@@ -23,10 +23,9 @@ namespace Ps {
 		Window();
 		~Window();
 		static const CreateInfo	GetCreateInfo(const int userWidth, const int userHeight, const char* userTitle);
-		const PsResult			Init(const CreateInfo wInfo);
-		const vk::SurfaceKHR&	GetSurface();
-		const PsResult			InitSurface(const vk::Instance& instance);
-
+		PsResult				Init(const CreateInfo wInfo);
+		const vk::SurfaceKHR&	GetSurface() const;
+		static GLFWwindow*		GetWindowHandle();
 
 
 	private:
@@ -35,5 +34,8 @@ namespace Ps {
 		int				m_Height;
 		std::string		m_Title;
 		vk::SurfaceKHR	m_Surface;
+
+		static GLFWwindow*	s_currentWindowHandle;
 	};
+
 }

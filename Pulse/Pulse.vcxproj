@@ -12,9 +12,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\PsCore.cpp" />
+    <ClCompile Include="Core\Rendering\API\VkTools.cpp" />
     <ClCompile Include="Pulse.h" />
     <ClCompile Include="Core\Window\Window.cpp" />
     <ClCompile Include="Core\Rendering\Renderer.cpp" />
+    <ClCompile Include="Core\Rendering\API\VkAPI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\PsCore.h" />
@@ -23,6 +25,7 @@
     <ClInclude Include="PsCommon.h" />
     <ClInclude Include="Core\Window\Window.h" />
     <ClInclude Include="Core\Rendering\Renderer.h" />
+    <ClInclude Include="Core\Rendering\API\VkAPI.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

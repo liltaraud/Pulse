@@ -13,7 +13,7 @@
 	#define PS_CORE_ASSERT(x, ...)
 #endif
 
-enum class PsResult
+enum PsResult
 {
 	PS_SUCCESS,
 	PS_FAILURE
