@@ -18,7 +18,7 @@ namespace Ps {
 			if (extensionCount < 1)
 				return false;
 
-			std::vector<std::string>	extensionList(requiredExtensions.begin(), requiredExtensions.end());
+			std::vector<std::string>	extensionList(requiredInstanceExtensions.begin(), requiredInstanceExtensions.end());
 			
 			for (const vk::ExtensionProperties& currExt : deviceExtensions) {
 				

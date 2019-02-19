@@ -41,8 +41,8 @@ namespace Ps {
 									&appInfo,
 									static_cast<uint32_t>(vktools::requiredValidationLayers.size()),
 									vktools::requiredValidationLayers.data(),
-									static_cast<uint32_t>(vktools::requiredExtensions.size()),
-									vktools::requiredExtensions.data());
+									static_cast<uint32_t>(vktools::requiredInstanceExtensions.size()),
+									vktools::requiredInstanceExtensions.data());
 
 		vk::Result instErr = vk::createInstance(&instanceInfo, nullptr, &m_instance);
 		PS_CORE_ASSERT(instErr == vk::Result::eSuccess, "Vk instance creation failed");

@@ -5,6 +5,9 @@
 
 #define PULSE_API
 
+#define VK_USE_PLATFORM_WIN32_KHR
+
+
 #ifdef PS_DEBUG
 	#define PS_ASSERT(x, ...) { if(!(x)) { PS_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
 	#define PS_CORE_ASSERT(x, ...) { if(!(x)) { PS_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }

@@ -13,6 +13,9 @@
 	const bool enableValidationLayers = true;
 #endif
 
+	// TODO: Port whole physical device system to a class system to allow for simpler access to device information 
+	//		 As well as creation and interfacing with multiple devices
+
 namespace Ps {
 
 	namespace vktools {
@@ -22,16 +25,19 @@ namespace Ps {
 //			"VK_LAYER_LUNARG_object_tracker"
 		};
 
-		const std::vector<const char*>	requiredExtensions = {
-			VK_KHR_SWAPCHAIN_EXTENSION_NAME,
-			VK_KHR_SURFACE_EXTENSION_NAME
+		const std::vector<const char*>	requiredInstanceExtensions = {
+			VK_KHR_WIN32_SURFACE_EXTENSION_NAME
+		};
+
+		const std::vector<const char*>	requiredDeviceExtensions = {
+			VK_KHR_SWAPCHAIN_EXTENSION_NAME
 		};
 
 
 		struct PhysicalDeviceRequiredProperties
 		{
 			const std::vector<std::string>	validationLayers;
-			const std::vector<std::string>	requiredExtensions;
+			const std::vector<std::string>	instanceExtensions;
 		};
 
 		struct SwapChainSupportDetails
