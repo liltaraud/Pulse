@@ -32,14 +32,14 @@ namespace Ps {
 
 	PsResult	Core::initLibrairies()
 	{
+		Log::init();
+		coreLogger = Log::getCoreLogger();
+		clientLogger = Log::getClientLogger();
+		
 		int err = glfwInit();
 		PS_CORE_ASSERT(err == GLFW_TRUE, "Failed to initalize GLFW");
 		
 		checkVulkanSupport();
-
-		Log::init();
-		coreLogger = Log::getCoreLogger();
-		clientLogger = Log::getClientLogger();
 		
 		return PS_SUCCESS;
 	}

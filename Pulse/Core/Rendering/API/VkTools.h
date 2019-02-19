@@ -17,14 +17,14 @@ namespace Ps {
 
 	namespace vktools {
 
-		/* LAYERS
-		 = {
-			"VK_LAYER_LUNARG_standard_validation",
-			"VK_LAYER_LUNARG_object_tracker"
+		const std::vector<const char*> requiredValidationLayers= {
+//			"VK_LAYER_LUNARG_standard_validation",
+//			"VK_LAYER_LUNARG_object_tracker"
 		};
-		*/
-		const std::vector<std::string>	requiredExtensions = {
-			VK_KHR_SWAPCHAIN_EXTENSION_NAME
+
+		const std::vector<const char*>	requiredExtensions = {
+//			VK_KHR_SWAPCHAIN_EXTENSION_NAME,
+//			VK_KHR_SURFACE_EXTENSION_NAME
 		};
 
 

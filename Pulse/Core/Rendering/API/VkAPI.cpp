@@ -1,4 +1,10 @@
 #include "VkAPI.h"
+#include <iostream>
+
+// Run on discrete GPUs in Nvidia equipped laptops
+extern "C" {
+	_declspec(dllexport) DWORD NvOptimusEnablement = 0x00000001;
+}
 
 namespace Ps {
 
@@ -31,7 +37,12 @@ namespace Ps {
 		vk::ApplicationInfo appInfo("Application Name", VK_MAKE_VERSION(0, 1, 0),
 			"Pulse", VK_MAKE_VERSION(0, 1, 0), VK_MAKE_VERSION(1, 1, 85));
 
-		vk::InstanceCreateInfo	instanceInfo({}, &appInfo, 0, nullptr, 0, nullptr);
+		vk::InstanceCreateInfo	instanceInfo({},
+									&appInfo,
+									static_cast<uint32_t>(vktools::requiredValidationLayers.size()),
+									vktools::requiredValidationLayers.data(),
+									static_cast<uint32_t>(vktools::requiredExtensions.size()),
+									vktools::requiredExtensions.data());
 
 		vk::Result instErr = vk::createInstance(&instanceInfo, nullptr, &m_instance);
 		PS_CORE_ASSERT(instErr == vk::Result::eSuccess, "Vk instance creation failed");
