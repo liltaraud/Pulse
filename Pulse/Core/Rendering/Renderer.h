@@ -12,11 +12,12 @@ namespace Ps {
 		Renderer();
 		~Renderer();
 
-		PsResult		Init(Ps::Window& ext_Window);
+		PsResult		init(const Window& extWindow);
+		const VkAPI&	getGraphicsAPI() const;
 
 	private:
-		Ps::VkAPI			graphicsAPI;
-		Ps::Window			*m_TargetWindowHandle;
+		VkAPI			m_graphicsAPI;
+		const Window	*m_targetWindowHandle;
 
 	};
 

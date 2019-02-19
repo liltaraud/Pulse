@@ -8,34 +8,28 @@
 
 namespace Ps {
 
-	class Window {
-
+	class Window
+	{
 
 	public:
 		
-		struct CreateInfo
-		{
-			int 			width;
-			int				height;
-			std::string 	title;
-		};
-		
-		Window();
+		Window(const int userWidth, const int userHeight, const std::string& userTitle);
 		~Window();
-		static const CreateInfo	GetCreateInfo(const int userWidth, const int userHeight, const char* userTitle);
-		PsResult				Init(const CreateInfo wInfo);
-		const vk::SurfaceKHR&	GetSurface() const;
-		static GLFWwindow*		GetWindowHandle();
+		PsResult				init(const vk::Instance vkInstance);
+		const vk::SurfaceKHR&	getSurface() const;
+		const GLFWwindow*		getGLFWWindowHandle() const;
 
 
 	private:
-		GLFWwindow*		m_Handle;
-		int				m_Width;
-		int				m_Height;
-		std::string		m_Title;
-		vk::SurfaceKHR	m_Surface;
 
-		static GLFWwindow*	s_currentWindowHandle;
+		PsResult				initSurface(const vk::Instance vkInstance);
+
+
+		GLFWwindow*		m_GLFWwindowHandle = nullptr;
+		int				m_width;
+		int				m_height;
+		std::string		m_title;
+		vk::SurfaceKHR	m_surface;
 	};
 
 }

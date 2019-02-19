@@ -13,20 +13,19 @@ namespace Ps {
 	public:
 		VkAPI();
 		~VkAPI();
-		const PsResult		Init();
-		VkSurfaceKHR		GetSurface() const;
-
+		PsResult				init(const Window& extWindow);
+		const vk::Instance&		getInstance() const;
 
 	private:
-		vk::Instance		m_Instance;
-		vk::SurfaceKHR		m_Surface;
+		const Window*		m_windowHandle = nullptr;
+		vk::Instance		m_instance;
+		vk::SurfaceKHR		m_surface;
+		bool				m_initialized;
 
 
-		const PsResult CreateInstance();
-		const PsResult InitSurface();
 
+		PsResult createInstance();
 
-		static bool			s_Initialized;
 	};
 
 }

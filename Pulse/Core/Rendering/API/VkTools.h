@@ -43,9 +43,9 @@ namespace Ps {
 
 		// VKTOOLS FUNCTIONS
 
-		SwapChainSupportDetails		querySwapChainSupport(vk::PhysicalDevice& device, vk::SurfaceKHR const& surface);
-		const bool					isSuitableDevice(vk::PhysicalDevice device, vk::SurfaceKHR const& surface, const PhysicalDeviceRequiredProperties& reqProperties);
-		vk::PhysicalDevice			findPhysicalDevice(vk::Instance& instance, const vk::SurfaceKHR& surface, const PhysicalDeviceRequiredProperties& reqProperties);
+		SwapChainSupportDetails		querySwapChainSupport(const vk::PhysicalDevice& device, const vk::SurfaceKHR& surface);
+		const bool					isSuitableDevice(const vk::PhysicalDevice& device, const vk::SurfaceKHR& surface, const PhysicalDeviceRequiredProperties& reqProperties);
+		vk::PhysicalDevice			findPhysicalDevice(const vk::Instance& instance, const vk::SurfaceKHR& surface, const PhysicalDeviceRequiredProperties& reqProperties);
 
 	}
 }

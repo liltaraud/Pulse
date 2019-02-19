@@ -11,30 +11,24 @@ namespace Ps {
 
 	public:
 
-		PULSE_API struct InitInfo
-		{
-			bool			fullscreen;
-			int				windowWidth;
-			int				windowHeight;
-			std::string		applicationName;
-		};
-
-		PULSE_API Core();
+		PULSE_API Core(const int userWidth = 1280, const int userHeight = 720, const std::string& userTitle = "No Title");
 		PULSE_API ~Core();
-		PULSE_API PsResult Init(const InitInfo info);
-		PULSE_API static const InitInfo GetInitInfo(const bool inputfs, const int inputWidth, const int inputHeight, const std::string inputTitle);
-		
+		PULSE_API PsResult init(const int windowWidth, const int windowHeight, const std::string& applicationName);
 
 	
 	private:
-		static bool s_Initialized;
 		
-		Ps::Window		m_Window;
-		Ps::Renderer	m_Renderer;
+		Window		m_window;
+		Renderer	m_renderer;
+		bool		m_initialized;
+		std::shared_ptr<spdlog::logger>		coreLogger;
+		std::shared_ptr<spdlog::logger>		clientLogger;
 
 
-		PsResult	InitLibrairies();
-		void		TerminateLibrairies();
+		PsResult	initLibrairies();
+		void		terminateLibrairies();
+		void		checkVulkanSupport();
+
 	};
 
 

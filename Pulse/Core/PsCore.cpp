@@ -2,68 +2,55 @@
 
 namespace Ps {
 
-	bool		Core::s_Initialized = false;
-
-
-	PULSE_API Core::Core()
+	PULSE_API Core::Core(const int userWidth, const int userHeight, const std::string& userTitle) :
+									m_window(userWidth, userHeight, userTitle)
 	{
 	}
 
 	PULSE_API Core::~Core()
 	{
-		TerminateLibrairies();
+		terminateLibrairies();
 	}
 
-	PULSE_API PsResult	 Core::Init(const InitInfo engineInfo)
+	PULSE_API PsResult	 Core::init(const int windowWidth, const int windowHeight, const std::string& applicationName)
 	{
-		PS_CORE_ASSERT(s_Initialized == false, "Core has already been initalized");
+		PS_CORE_ASSERT(m_initialized == false, "Core has already been initalized");
 		
-		PsResult	libErr = InitLibrairies();
+		PsResult	libErr = initLibrairies();
 		PS_CORE_ASSERT(libErr == PS_SUCCESS, "Librairies initialization failed");
 
-		Window::CreateInfo		wInfo = Window::GetCreateInfo(
-			engineInfo.windowWidth,
-			engineInfo.windowHeight,
-			engineInfo.applicationName.c_str());
-
-		PsResult winErr = m_Window.Init(wInfo);
-		PS_CORE_ASSERT(winErr == PS_SUCCESS, "Window initialization failed");
-
-		PsResult rendererErr = m_Renderer.Init(m_Window);
+		PsResult rendererErr = m_renderer.init(m_window);
 		PS_CORE_ASSERT(rendererErr == PS_SUCCESS, "Renderer initialization failed");
 
-		s_Initialized = true;
+		PsResult winErr = m_window.init(m_renderer.getGraphicsAPI().getInstance());
+		PS_CORE_ASSERT(winErr == PS_SUCCESS, "Window initialization failed");
+
+		m_initialized = true;
 
 		return PS_SUCCESS;
 	}
 
-	PULSE_API const Core::InitInfo		Core::GetInitInfo(
-											const bool inputfs,
-											const int inputWidth,
-											const int inputHeight,
-											const std::string inputTitle)
-	{
-		const InitInfo engineInfo = {
-			inputfs,
-			inputWidth,
-			inputHeight,
-			inputTitle,
-		};
-
-		return  engineInfo;
-	}
-
-	PsResult	Core::InitLibrairies()
+	PsResult	Core::initLibrairies()
 	{
 		int err = glfwInit();
 		PS_CORE_ASSERT(err == GLFW_TRUE, "Failed to initalize GLFW");
 		
-		Log::Init();
-	
+		checkVulkanSupport();
+
+		Log::init();
+		coreLogger = Log::getCoreLogger();
+		clientLogger = Log::getClientLogger();
+		
 		return PS_SUCCESS;
 	}
 
-	void	Core::TerminateLibrairies()
+	void	Core::checkVulkanSupport()
+	{
+		const int vkSupportErr = glfwVulkanSupported();
+		PS_CORE_ASSERT(vkSupportErr == GLFW_TRUE, "Vulkan isn't supported");
+	}
+
+	void	Core::terminateLibrairies()
 	{
 		glfwTerminate();
 	}

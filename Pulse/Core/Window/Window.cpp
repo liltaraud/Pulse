@@ -3,60 +3,47 @@
 
 namespace Ps {
 
-	GLFWwindow* Window::s_currentWindowHandle = nullptr;
-
-	Window::Window()
+	Window::Window(const int userWidth, const int userHeight, const std::string& userTitle) :
+										m_width(userWidth),
+										m_height(userHeight),
+										m_title(userTitle)
 	{
-		m_Handle = nullptr;
-		m_Width = 1280;
-		m_Height = 720;
-		m_Title = "No Title";
+
 	}
 
 	Window::~Window()
 	{
-		if (m_Handle)
-			glfwDestroyWindow(m_Handle);
+		if (m_GLFWwindowHandle)
+			glfwDestroyWindow(m_GLFWwindowHandle);
 	}
 
-	const Window::CreateInfo	 Window::GetCreateInfo(const int userWidth, const int userHeight, const char* userTitle)
+	PsResult Window::init(const vk::Instance vkInstance)
 	{
-		CreateInfo		wInfo = { 
-			userWidth,
-			userHeight,
-			userTitle
-		};
-		return wInfo;
-	}
-
-	PsResult Window::Init(const CreateInfo wInfo)
-	{
-		const int vkSupportErr = glfwVulkanSupported();
-		PS_CORE_ASSERT(vkSupportErr, "Vulkan isn't supported");
-
-		m_Width = wInfo.width;
-		m_Height = wInfo.height;
-		m_Title = wInfo.title;
+		m_GLFWwindowHandle = glfwCreateWindow(m_width, m_height, m_title.c_str(), nullptr, nullptr);
+		PS_CORE_ASSERT(m_GLFWwindowHandle, "GLFW window creation failed");
 		
-		m_Handle = glfwCreateWindow(m_Width, m_Height, m_Title.c_str(), NULL, nullptr);
-		PS_CORE_ASSERT(m_Handle, "GLFW window creation failed");
-		
-		s_currentWindowHandle = m_Handle;
-		
+		initSurface(vkInstance);
 		return PS_SUCCESS;
 	}
 	
-	const vk::SurfaceKHR& Window::GetSurface() const
+	const vk::SurfaceKHR& Window::getSurface() const
 	{
-		PS_CORE_ASSERT(m_Surface, "Surface hasn't been initialized");
-		return m_Surface;
+		PS_CORE_ASSERT(m_surface, "Surface hasn't been initialized");
+		return m_surface;
 	}
 
-	GLFWwindow* Window::GetWindowHandle()
+	const GLFWwindow* Window::getGLFWWindowHandle() const
 	{
-		return s_currentWindowHandle;
+		return m_GLFWwindowHandle;
 	}
 
+	PsResult Window::initSurface(const vk::Instance vkInstance)
+	{
+		VkSurfaceKHR		tmp_Surface;
 
-
+		VkResult err = glfwCreateWindowSurface(vkInstance, m_GLFWwindowHandle, nullptr, &tmp_Surface);
+		PS_CORE_ASSERT(err == VK_SUCCESS, "Failed to create the window surface");
+		m_surface = tmp_Surface;
+		return PS_SUCCESS;
+	}
 }

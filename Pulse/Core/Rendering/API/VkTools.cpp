@@ -7,7 +7,7 @@ namespace Ps {
 
 		// TO DO : Refactor this crap to make it work with vulkan.hpp
 		
-		const bool		checkExtensionSupport(vk::PhysicalDevice& device)
+		const bool		checkExtensionSupport(const vk::PhysicalDevice& device)
 		{
 			uint32_t	extensionCount;
 			std::vector<vk::ExtensionProperties>		deviceExtensions;
@@ -28,7 +28,7 @@ namespace Ps {
 			return true;
 		}
 
-		SwapChainSupportDetails		querySwapChainSupport(vk::PhysicalDevice& device, vk::SurfaceKHR const& surface)
+		SwapChainSupportDetails		querySwapChainSupport(const vk::PhysicalDevice& device, const vk::SurfaceKHR& surface)
 		{
 			uint32_t					formatCount;
 			uint32_t					presentModesCount;
@@ -54,7 +54,7 @@ namespace Ps {
 		}
 
 
-		const bool		isSuitableDevice(vk::PhysicalDevice device, vk::SurfaceKHR const& surface, const PhysicalDeviceRequiredProperties& reqProperties)
+		const bool		isSuitableDevice(const vk::PhysicalDevice& device, const vk::SurfaceKHR& surface, const PhysicalDeviceRequiredProperties& reqProperties)
 		{
 			vk::PhysicalDeviceProperties		deviceProperties;
 			vk::PhysicalDeviceFeatures			deviceFeatures;
@@ -73,7 +73,7 @@ namespace Ps {
 			return true;
 		}
 
-		vk::PhysicalDevice		findPhysicalDevice(vk::Instance& instance, const vk::SurfaceKHR& surface, const PhysicalDeviceRequiredProperties& reqProperties)
+		vk::PhysicalDevice		findPhysicalDevice(const vk::Instance& instance, const vk::SurfaceKHR& surface, const PhysicalDeviceRequiredProperties& reqProperties)
 		{
 			std::vector<vk::PhysicalDevice> physicalDevicesList = instance.enumeratePhysicalDevices();
 

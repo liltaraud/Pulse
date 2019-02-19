@@ -8,7 +8,7 @@ namespace Ps {
 	class Log
 	{
 	public:
-		static void Init()
+		static void init()
 		{
 			spdlog::set_pattern("%^[%T] %n: %v%$");
 			s_CoreLogger = spdlog::stdout_color_mt("PULSE");
@@ -18,8 +18,8 @@ namespace Ps {
 			s_ClientLogger->set_level(spdlog::level::trace);
 		}
 		
-		static inline std::shared_ptr<spdlog::logger>&		GetCoreLogger() { return s_CoreLogger; }
-		static inline std::shared_ptr<spdlog::logger>&		GetClientLogger() { return s_ClientLogger; }
+		static inline std::shared_ptr<spdlog::logger>&		getCoreLogger() { return s_CoreLogger; }
+		static inline std::shared_ptr<spdlog::logger>&		getClientLogger() { return s_ClientLogger; }
 
 	private:
 		static inline std::shared_ptr<spdlog::logger>	s_CoreLogger;
@@ -37,11 +37,11 @@ namespace Ps {
 	#define PS_CORE_ERROR(...)
 	#define PS_CORE_CRITICAL(...) 
 #else
-	#define PS_CORE_TRACE(...)    ::Ps::Log::GetCoreLogger()->trace(__VA_ARGS__)
-	#define PS_CORE_INFO(...)     ::Ps::Log::GetCoreLogger()->info(__VA_ARGS__)
-	#define PS_CORE_WARN(...)     ::Ps::Log::GetCoreLogger()->warn(__VA_ARGS__)
-	#define PS_CORE_ERROR(...)    ::Ps::Log::GetCoreLogger()->error(__VA_ARGS__)
-	#define PS_CORE_CRITICAL(...) ::Ps::Log::GetCoreLogger()->critical(__VA_ARGS__)
+	#define PS_CORE_TRACE(...)    ::Ps::Log::getCoreLogger()->trace(__VA_ARGS__)
+	#define PS_CORE_INFO(...)     ::Ps::Log::getCoreLogger()->info(__VA_ARGS__)
+	#define PS_CORE_WARN(...)     ::Ps::Log::getCoreLogger()->warn(__VA_ARGS__)
+	#define PS_CORE_ERROR(...)    ::Ps::Log::getCoreLogger()->error(__VA_ARGS__)
+	#define PS_CORE_CRITICAL(...) ::Ps::Log::getCoreLogger()->critical(__VA_ARGS__)
 #endif
 
 // Client log macros
@@ -52,9 +52,9 @@ namespace Ps {
 	#define PS_ERROR(...)
 	#define PS_CRITICAL(...)
 #else
-	#define PS_TRACE(...)	      ::Ps::Log::GetClientLogger()->trace(__VA_ARGS__)
-	#define PS_INFO(...)	      ::Ps::Log::GetClientLogger()->info(__VA_ARGS__)
-	#define PS_WARN(...)	      ::Ps::Log::GetClientLogger()->warn(__VA_ARGS__)
-	#define PS_ERROR(...)	      ::Ps::Log::GetClientLogger()->error(__VA_ARGS__)
-	#define PS_CRITICAL(...)	  ::Ps::Log::GetClientLogger()->critical(__VA_ARGS__)
+	#define PS_TRACE(...)	      ::Ps::Log::getClientLogger()->trace(__VA_ARGS__)
+	#define PS_INFO(...)	      ::Ps::Log::getClientLogger()->info(__VA_ARGS__)
+	#define PS_WARN(...)	      ::Ps::Log::getClientLogger()->warn(__VA_ARGS__)
+	#define PS_ERROR(...)	      ::Ps::Log::getClientLogger()->error(__VA_ARGS__)
+	#define PS_CRITICAL(...)	  ::Ps::Log::getClientLogger()->critical(__VA_ARGS__)
 #endif
