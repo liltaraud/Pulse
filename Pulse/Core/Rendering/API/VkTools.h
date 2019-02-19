@@ -23,8 +23,8 @@ namespace Ps {
 		};
 
 		const std::vector<const char*>	requiredExtensions = {
-//			VK_KHR_SWAPCHAIN_EXTENSION_NAME,
-//			VK_KHR_SURFACE_EXTENSION_NAME
+			VK_KHR_SWAPCHAIN_EXTENSION_NAME,
+			VK_KHR_SURFACE_EXTENSION_NAME
 		};
 
 
